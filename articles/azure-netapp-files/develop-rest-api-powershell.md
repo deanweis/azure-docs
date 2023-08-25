@@ -35,7 +35,7 @@ The REST API specification for Azure NetApp Files is published through [GitHub](
    2. Enter the following command in the Azure CLI:  
 
       ```azurecli
-      $RBAC_SP = az ad sp create-for-rbac --name <YOURSPNAMEGOESHERE> --role Contributor --scopes /subscriptions/<subscription-id> | ConvertFrom-Json         
+      $RBAC_SP = az ad sp create-for-rbac --name <YOURSPNAMEGOESHERE> --role Contributor --scopes /subscriptions/<subscription-id> -o json | ConvertFrom-Json         
       ```
 
       To display the service principal information, type `$RBAC_SP` and press Enter.
@@ -291,7 +291,7 @@ This section shows sample scripts for PowerShell.
     $vmsubnet = "VM-subnet-$Octet2-$Region-" + $MyRandomID
     $vmsubnetCIDR = "10.$Octet2.121.0/24"
     
-    $BearerToken = (az account get-access-token | ConvertFrom-Json).accessToken
+    $BearerToken = (az account get-access-token -o json | ConvertFrom-Json).accessToken
     
     $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
     $headers.Add("Authorization", "Bearer $BearerToken")
